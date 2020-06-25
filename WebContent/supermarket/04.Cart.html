@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>04. 장바구니</title>
+    <!-- CDN - Font Awesome 4 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- CDN - Google Icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <!-- CDN - W3CSS -->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <!-- CDN OFFLINE- sw_topNav.css -->
+    <link rel="stylesheet" href="../sw_css/sw-1.0.0.css">
+
+    <style>
+        #buttonBar {
+            position: fixed;
+            bottom: 10px;
+            left: 0;
+            width: 100%;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- responsive template by SW ----------------------------------------------------------- -->
+    <!-- Need   W3CSS  +  FONT AS4  +  sw+topnav offline ------------------------------------- -->
+    <div class="sw-topnav-margin">
+        &nbsp;
+    </div>
+
+    <!-- CONTENT ------------------------------------------------------------------------------------ -->
+    <div class="sw-center">
+
+        <!-- 가로복 제한 400~1200 ---------------------------------------------------------------------------------->
+        <div class="sw-container-600">
+            <div class="w3-container">
+                <!-- 3 main content start here!!!----------------------------------------------------------- -->
+                <!-- 2 main content start here!!!----------------------------------------------------------- -->
+                <!-- 1 main content start here!!!----------------------------------------------------------- -->
+                <div id="list" class="w3-row-padding">
+
+                    <c:if test="${list.size()<1}">
+                        <div class="w3-center">
+                            <i class="material-icons" style="font-size: 48px; color: red">add_shopping_cart</i>
+                        </div>
+                        <div class="w3-center w3-section" style="margin-bottom: 15px;">
+                            <strong> 메뉴를 담아주세요</strong>
+                        </div>
+                    </c:if>
+                    <!-- ------------------------------------------------------------------- -->
+                    <c:if test="${list.size()>=1}">
+                        <c:forEach items="${list}" var="dto">
+                            <div class="w3-section cartRow">
+                                <div class="w3-row">
+                                    <div class="w3-col w3-right" style="width: 60px;">
+                                        <button type="button" class="w3-button" onclick="deleteFromCart(this)">삭제</button>
+                                    </div>
+                                    <strong class="w3-rest w3-left" style="margin: 8px;">어떤 돼지의 삼겹살</strong>
+                                </div>
+                                <div class="w3-cyan" style="display: none;">${dto.menu_No }</div>
+                                <div class="w3-left w3-margin-left w3-margin-right">
+                                    <div class="w3-small" style="color: #8C8C8C; text-align: justify;">
+                                        (300g/국내산)</div>
+                                </div>
+                                <div class="w3-row">
+                                    <div class="w3-col s6">
+                                        <span class="w3-left" style="margin-top: 12px; margin-left: 10px;">12345</span>
+                                        <span class="w3-left" style="margin-top: 12px; margin-left: 5px;">원</span>
+                                    </div>
+                                    <div class="w3-col s6 w3-margin-bottom">
+                                        <div class="w3-bar w3-border w3-right" style="margin-top: 5px; margin-right: 5px; width: 140px;">
+                                            <div class="w3-bar-item w3-button w3-left" onclick="countMinus(this)">-</div>
+                                            <div class="w3-bar-item">3</div>
+                                            <div class="w3-bar-item w3-button w3-right" onclick="countPlus(this)">+</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </c:forEach>
+
+                        <div id="cart_shop_no" style="display: none;">${cart_shop_no }</div>
+                        <div id="cart_total" style="display: none;">${totalPrice }</div>
+
+                        <!-- 하단 고정메뉴============================================== -->
+                        <div id="buttonBar">
+                            <div class="w3-row-padding" style="max-width: 500px; margin: auto;">
+                                <div class="w3-col s6">
+                                    <button class="w3-block w3-button w3-green">주문하기</button>
+                                </div>
+                                <div class="w3-col s6">
+                                    <button class="w3-block w3-button w3-green">쇼핑 계속하기</button>
+                                </div>
+                            </div>
+                        </div>
+                    </c:if>
+
+                </div>
+            </div>
+            <!-- main content end----------------------------------------------------------------------- -->
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <!-- responsive template by SW ----------------------------------------------------------- -->
+    <!-- Need   W3CSS  +  FONT AS4  +  sw+topnav offline ------------------------------------- -->
+    <div class="sw-topnav-margin">
+        &nbsp;
+    </div>
+
+
+
+
+    <!-- HEAD ------------------------------------------------------------------------------------ -->
+    <!-- head가 맨 나중?나중에 나온 요소가 레이어 맨위로... ---------------------------------------->
+    <header class="topnav w3-card-4" id="topNav">
+        <a href="#" class="active">마켓경영</a>
+        <a href="#">쇼핑하기</a>
+        <a href="#">마이페이지</a>
+        <a href="#">로그아웃</a>
+        <a href="javascript:void(0);" class="icon" onclick="responsiveMenuPopUp()">
+            <i class="fa fa-bars"></i>
+        </a>
+    </header>
+
+    <script>
+        /* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
+        function responsiveMenuPopUp() {
+            var x = document.getElementById("topNav");
+            if (x.className === "topnav w3-card-4") {
+                x.className += " responsive";
+            } else {
+                x.className = "topnav w3-card-4";
+            }
+        }
+
+        window.onresize = function () {
+            var x = document.getElementById("topNav");
+            x.className = "topnav w3-card-4";
+        }
+    </script>
+
+</body>
+
+</html>

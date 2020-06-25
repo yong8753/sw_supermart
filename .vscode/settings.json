@@ -1,0 +1,21 @@
+{
+    "java.dependency.packagePresentation": "flat",
+    "sqltools.connections": [
+        {
+            "askForPassword": false,
+            "connectionTimeout": 10000,
+            "database": "baemindb",
+            "driver": "MySQL",
+            "group": "GCP",
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "name": "gcp baemindb",
+            "password": "q1w2e3",
+            "port": 3306,
+            "previewLimit": 50,
+            "server": "34.64.219.135",
+            "username": "root"
+        }
+    ]
+}
